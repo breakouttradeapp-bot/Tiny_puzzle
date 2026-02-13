@@ -10,11 +10,7 @@ import com.tinygenius.ui.coloring.ColoringCanvas
 import com.tinygenius.ui.coloring.ColoringScreen
 import com.tinygenius.ui.home.HomeScreen
 import com.tinygenius.ui.puzzle.PuzzleGame
-import com.tinygenius.ui.puzzle.PuzzleScreen
 
-/**
- * Navigation graph for the app
- */
 @Composable
 fun NavGraph(
     navController: NavHostController,
@@ -24,6 +20,7 @@ fun NavGraph(
         navController = navController,
         startDestination = startDestination
     ) {
+
         // Home Screen
         composable(Screen.Home.route) {
             HomeScreen(
@@ -35,7 +32,7 @@ fun NavGraph(
                 }
             )
         }
-        
+
         // Coloring Selection Screen
         composable(Screen.Coloring.route) {
             ColoringScreen(
@@ -47,14 +44,12 @@ fun NavGraph(
                 }
             )
         }
-        
+
         // Coloring Canvas Screen
         composable(
             route = Screen.ColoringCanvas.route,
             arguments = listOf(
-                navArgument("pageId") {
-                    type = NavType.IntType
-                }
+                navArgument("pageId") { type = NavType.IntType }
             )
         ) { backStackEntry ->
             val pageId = backStackEntry.arguments?.getInt("pageId") ?: 1
@@ -65,26 +60,22 @@ fun NavGraph(
                 }
             )
         }
-        
-        // Puzzle Selection Screen
+
+        // 🔥 DIRECT PUZZLE OPEN (CRASH FIX)
         composable(Screen.Puzzle.route) {
-            PuzzleScreen(
+            PuzzleGame(
+                levelId = 1,
                 onNavigateBack = {
                     navController.popBackStack()
-                },
-                onLevelSelected = { levelId ->
-                    navController.navigate(Screen.PuzzleGame.createRoute(levelId))
                 }
             )
         }
-        
-        // Puzzle Game Screen
+
+        // Puzzle Game with level id
         composable(
             route = Screen.PuzzleGame.route,
             arguments = listOf(
-                navArgument("levelId") {
-                    type = NavType.IntType
-                }
+                navArgument("levelId") { type = NavType.IntType }
             )
         ) { backStackEntry ->
             val levelId = backStackEntry.arguments?.getInt("levelId") ?: 1
@@ -97,3 +88,4 @@ fun NavGraph(
         }
     }
 }
+
