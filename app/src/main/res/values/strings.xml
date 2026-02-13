@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tiny Genius</string>
+    <string name="coloring">Coloring</string>
+    <string name="puzzle">Puzzle</string>
+    <string name="unlock_premium">Unlock Premium</string>
+    <string name="sound">Sound</string>
+    <string name="back">Back</string>
+    <string name="undo">Undo</string>
+    <string name="clear">Clear</string>
+    <string name="reset">Reset</string>
+    <string name="choose_color">Pick a Color</string>
+    <string name="choose_coloring_page">Choose a Coloring Page</string>
+    <string name="choose_puzzle">Choose a Puzzle</string>
+    <string name="locked">Locked</string>
+    <string name="premium_required">Premium Required</string>
+    <string name="celebration_text">Amazing! You did it!</string>
+    <string name="puzzle_complete">Puzzle Complete!</string>
+    <string name="moves">Moves: %d</string>
+    <string name="pieces">%d pieces</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="parent_verification">Parent Verification</string>
+    <string name="parent_gate_instruction">Please solve this simple math problem to continue:</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="your_answer">Your Answer</string>
+    <string name="incorrect_answer">Incorrect answer. Please try again.</string>
+    <string name="play_again">Play Again</string>
+</resources>
