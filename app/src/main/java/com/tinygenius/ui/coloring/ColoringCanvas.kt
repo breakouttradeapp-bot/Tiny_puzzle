@@ -23,62 +23,84 @@ fun ColoringCanvas(pageId:Int, onNavigateBack:()->Unit){
     val context = LocalContext.current
     val clickSound = remember { MediaPlayer.create(context, R.raw.click) }
 
-    var selectedColor by remember { mutableStateOf(Color.Red) }
+    var currentColor by remember { mutableStateOf(Color.Red) }
+    var bgColor by remember { mutableStateOf(Color.White) }
+
+    val imageRes = when(pageId){
+        1 -> R.drawable.coloring1
+        else -> R.drawable.coloring2
+    }
 
     Scaffold(
-        topBar={
-            TopAppBar(title={Text("🎨 Coloring")})
+        topBar = {
+            TopAppBar(title = { Text("🎨 Coloring Fun") })
         }
     ){ padding->
 
         Column(
-            modifier=Modifier
+            modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFFFF8E1))
+                .background(Color(0xFFFFF3E0))
                 .padding(padding),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
 
-            Spacer(modifier=Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
-            // coloring image
-            Image(
-                painter = painterResource(
-                    if(pageId==1) R.drawable.coloring1 else R.drawable.coloring2
-                ),
-                contentDescription=null,
-                modifier=Modifier
-                    .size(300.dp)
-                    .background(selectedColor.copy(alpha=0.2f))
-            )
+            // Coloring board
+            Box(
+                modifier = Modifier
+                    .size(320.dp)
+                    .background(bgColor)
+                    .clickable {
+                        bgColor = currentColor
+                        clickSound.start()
+                    },
+                contentAlignment = Alignment.Center
+            ){
+                Image(
+                    painter = painterResource(id = imageRes),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
 
-            Spacer(modifier=Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(25.dp))
 
-            Text("Choose Color", style=MaterialTheme.typography.titleLarge)
+            Text("Pick a Color", style = MaterialTheme.typography.titleLarge)
 
-            Spacer(modifier=Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
             Row(
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ){
 
-                val colors=listOf(
+                val colors = listOf(
                     Color.Red, Color.Green, Color.Blue,
-                    Color.Yellow, Color.Magenta, Color.Cyan
+                    Color.Yellow, Color.Magenta, Color.Cyan,
+                    Color(0xFFFF9800), Color(0xFF795548)
                 )
 
                 colors.forEach { color->
 
                     Box(
-                        modifier=Modifier
-                            .size(50.dp)
+                        modifier = Modifier
+                            .size(48.dp)
                             .background(color, CircleShape)
-                            .clickable{
-                                selectedColor=color
+                            .clickable {
+                                currentColor = color
                                 clickSound.start()
                             }
                     )
                 }
+            }
+
+            Spacer(modifier = Modifier.height(25.dp))
+
+            Button(onClick = {
+                bgColor = Color.White
+            }) {
+                Text("Reset")
             }
         }
     }
