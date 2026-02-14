@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.tinygenius.app-merged_res-68:/drawable_puzzle2.jpg.flat",
+        "source": "com.tinygenius.app-main-70:/drawable/puzzle2.jpg"
+    },
+    {
+        "merged": "com.tinygenius.app-merged_res-68:/drawable_coloring1.jpg.flat",
+        "source": "com.tinygenius.app-main-70:/drawable/coloring1.jpg"
+    },
+    {
+        "merged": "com.tinygenius.app-merged_res-68:/drawable_puzzle1.jpg.flat",
+        "source": "com.tinygenius.app-main-70:/drawable/puzzle1.jpg"
+    }
+]

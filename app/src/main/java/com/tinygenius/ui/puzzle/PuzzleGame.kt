@@ -1,5 +1,5 @@
 package com.tinygenius.ui.puzzle
-
+import com.tinygenius.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
@@ -12,7 +12,6 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.IntOffset
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,11 +40,12 @@ fun PuzzleGame(
             contentAlignment = Alignment.Center
         ) {
 
+            // 🔥 YOUR PUZZLE IMAGE
             Image(
-                painter = painterResource(id = android.R.drawable.ic_menu_gallery),
+                painter = painterResource(id = R.drawable.puzzle1),
                 contentDescription = "puzzle",
                 modifier = Modifier
-                    .size(200.dp)
+                    .size(260.dp)
                     .offset { IntOffset(offsetX.toInt(), offsetY.toInt()) }
                     .pointerInput(Unit) {
                         detectDragGestures { change, dragAmount ->
