@@ -1,16 +1,16 @@
 package com.tinygenius.ui.coloring
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.tinygenius.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -19,12 +19,7 @@ fun ColoringScreen(
     onPageSelected: (Int) -> Unit
 ) {
 
-    val images = listOf(
-        android.R.drawable.ic_menu_gallery,
-        android.R.drawable.ic_menu_camera,
-        android.R.drawable.ic_menu_compass,
-        android.R.drawable.ic_menu_agenda
-    )
+    var selectedColor by remember { mutableStateOf(Color.White) }
 
     Scaffold(
         topBar = {
@@ -32,27 +27,37 @@ fun ColoringScreen(
         }
     ) { padding ->
 
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            modifier = Modifier.padding(padding).padding(12.dp)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .background(selectedColor)
         ) {
 
-            items(images.indices.toList()) { index ->
+            // image
+            Image(
+                painter = painterResource(id = R.drawable.coloring1),
+                contentDescription = "coloring",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(350.dp)
+            )
 
-                Card(
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .fillMaxWidth()
-                        .clickable { onPageSelected(index) }
-                ) {
+            Spacer(modifier = Modifier.height(20.dp))
 
-                    Image(
-                        painter = painterResource(id = images[index]),
-                        contentDescription = "img",
+            // color palette
+            Row(modifier = Modifier.padding(16.dp)) {
+
+                listOf(Color.Red, Color.Blue, Color.Green, Color.Yellow, Color.Magenta).forEach { color ->
+
+                    Box(
                         modifier = Modifier
-                            .height(150.dp)
-                            .fillMaxWidth()
+                            .size(60.dp)
+                            .background(color)
+                            .clickable { selectedColor = color }
                     )
+
+                    Spacer(modifier = Modifier.width(10.dp))
                 }
             }
         }
