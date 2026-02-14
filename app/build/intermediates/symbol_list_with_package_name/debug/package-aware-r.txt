@@ -287,6 +287,7 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
+mipmap ic_launcher
 raw com_android_billingclient_heterodyne_info
 raw com_android_billingclient_registration_info
 raw win
