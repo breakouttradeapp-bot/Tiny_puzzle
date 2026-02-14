@@ -1,5 +1,6 @@
 package com.tinygenius
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
@@ -22,18 +24,26 @@ class MainActivity : ComponentActivity() {
 
         setContent {
 
+            val context = LocalContext.current
+            val launchSound = remember { MediaPlayer.create(context, R.raw.launch) }
+
             var showSplash by remember { mutableStateOf(true) }
 
-            // 🔥 animation scale
+            // animation scale
             val scale = remember { Animatable(0.5f) }
 
             if (showSplash) {
 
                 LaunchedEffect(true) {
+
+                    // 🔊 play launch sound
+                    launchSound.start()
+
                     scale.animateTo(
                         targetValue = 1.2f,
                         animationSpec = tween(1200)
                     )
+
                     delay(2000)
                     showSplash = false
                 }

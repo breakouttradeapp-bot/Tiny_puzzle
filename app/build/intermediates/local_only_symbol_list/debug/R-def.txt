@@ -5,6 +5,8 @@ drawable logo
 drawable puzzle1
 drawable puzzle2
 mipmap ic_launcher
+raw click
+raw launch
 raw win
 string app_name
 string back
