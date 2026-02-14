@@ -1,0 +1,13 @@
+# Gradle
+.gradle/
+build/
+
+# App build
+app/build/
+
+# Keystore
+*.jks
+
+# Local config
+local.properties
+
