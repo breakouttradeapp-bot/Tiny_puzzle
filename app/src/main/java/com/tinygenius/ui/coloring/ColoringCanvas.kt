@@ -4,24 +4,28 @@ import android.media.MediaPlayer
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Create
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.Alignment
 import com.tinygenius.R
 
 data class DrawPath(
@@ -40,18 +44,13 @@ fun ColoringCanvas(pageId: Int, onNavigateBack: () -> Unit) {
     var selectedColor by remember { mutableStateOf(Color.Red) }
     var paths by remember { mutableStateOf(listOf<DrawPath>()) }
     var currentPath by remember { mutableStateOf<Path?>(null) }
-    var brushSize by remember { mutableStateOf(18f) }
-    var eraser by remember { mutableStateOf(false) }
+    var strokeWidth by remember { mutableStateOf(12f) }
+    var isEraser by remember { mutableStateOf(false) }
 
     val imageRes = when (pageId) {
         1 -> R.drawable.coloring1
         else -> R.drawable.coloring2
     }
-
-    val colors = listOf(
-        Color.Red, Color.Green, Color.Blue, Color.Yellow,
-        Color.Magenta, Color.Cyan, Color.Black, Color.Gray
-    )
 
     Scaffold(
         topBar = {
@@ -59,22 +58,18 @@ fun ColoringCanvas(pageId: Int, onNavigateBack: () -> Unit) {
                 title = { Text("🎨 Coloring Game") },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Default.ArrowBack, "back", tint = Color.White)
+                        Icon(Icons.Default.ArrowBack, "")
                     }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFF6200EA),
-                    titleContentColor = Color.White
-                )
+                }
             )
         }
-    ) { padding ->
+    ) { pad ->
 
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFFFF3E0))
-                .padding(padding),
+                .padding(pad)
+                .background(Color(0xFFFFF8E1)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -82,15 +77,15 @@ fun ColoringCanvas(pageId: Int, onNavigateBack: () -> Unit) {
 
             Box(
                 modifier = Modifier
-                    .padding(16.dp)
                     .fillMaxWidth()
+                    .padding(16.dp)
                     .aspectRatio(1f)
                     .background(Color.White)
             ) {
 
                 Image(
                     painter = painterResource(imageRes),
-                    contentDescription = null,
+                    contentDescription = "",
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Fit
                 )
@@ -99,6 +94,7 @@ fun ColoringCanvas(pageId: Int, onNavigateBack: () -> Unit) {
                     modifier = Modifier
                         .fillMaxSize()
                         .pointerInput(Unit) {
+
                             detectDragGestures(
                                 onDragStart = { offset ->
                                     currentPath = Path().apply {
@@ -115,8 +111,8 @@ fun ColoringCanvas(pageId: Int, onNavigateBack: () -> Unit) {
                                     currentPath?.let {
                                         paths = paths + DrawPath(
                                             it,
-                                            if (eraser) Color.White else selectedColor,
-                                            brushSize
+                                            if (isEraser) Color.White else selectedColor,
+                                            strokeWidth
                                         )
                                         currentPath = null
                                         clickSound.start()
@@ -125,87 +121,86 @@ fun ColoringCanvas(pageId: Int, onNavigateBack: () -> Unit) {
                             )
                         }
                 ) {
+
                     paths.forEach {
                         drawPath(
                             path = it.path,
                             color = it.color,
-                            style = Stroke(it.width)
+                            style = Stroke(width = it.width)
                         )
                     }
 
                     currentPath?.let {
                         drawPath(
                             path = it,
-                            color = if (eraser) Color.White else selectedColor,
-                            style = Stroke(brushSize)
+                            color = if (isEraser) Color.White else selectedColor,
+                            style = Stroke(width = strokeWidth)
                         )
                     }
                 }
             }
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier.fillMaxWidth()
+            ) {
 
-            Row(horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier.fillMaxWidth()) {
-
-                IconButton(onClick = {
-                    eraser = false
+                Button(onClick = {
+                    isEraser = false
                     clickSound.start()
-                }) {
-                    Icon(Icons.Default.Create, "brush", tint = Color.Blue)
-                }
+                }) { Text("Brush") }
 
-                IconButton(onClick = {
-                    eraser = true
-                    brushSize = 40f
+                Button(onClick = {
+                    isEraser = true
+                    strokeWidth = 30f
                     clickSound.start()
-                }) {
-                    Icon(Icons.Default.Clear, "eraser", tint = Color.Red)
-                }
+                }) { Text("Eraser") }
 
-                IconButton(onClick = {
+                Button(onClick = {
                     if (paths.isNotEmpty()) {
                         paths = paths.dropLast(1)
                         clickSound.start()
                     }
-                }) {
-                    Icon(Icons.Default.Refresh, "undo")
-                }
+                }) { Text("Undo") }
 
-                IconButton(onClick = {
+                Button(onClick = {
                     paths = emptyList()
                     clickSound.start()
-                }) {
-                    Icon(Icons.Default.Delete, "clear")
-                }
+                }) { Text("Clear") }
             }
 
             Spacer(modifier = Modifier.height(10.dp))
 
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                colors.forEach { color ->
+            Row {
+                listOf(
+                    Color.Red,
+                    Color.Blue,
+                    Color.Green,
+                    Color.Yellow,
+                    Color.Magenta,
+                    Color.Cyan,
+                    Color.Black
+                ).forEach { color ->
+
                     Box(
                         modifier = Modifier
                             .size(40.dp)
                             .background(color, CircleShape)
+                            .padding(4.dp)
                             .clickable {
                                 selectedColor = color
-                                eraser = false
+                                isEraser = false
                                 clickSound.start()
                             }
                     )
+                    Spacer(modifier = Modifier.width(8.dp))
                 }
             }
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Button(onClick = {
-                val win = MediaPlayer.create(context, R.raw.win)
-                win.start()
-            }) {
-                Text("🎉 Finished")
-            }
         }
+    }
+
+    DisposableEffect(Unit) {
+        onDispose { clickSound.release() }
     }
 }
 
