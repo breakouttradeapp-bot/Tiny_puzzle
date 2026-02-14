@@ -155,7 +155,6 @@ int drawable notify_panel_notification_icon_bg 0x7f05002d
 int drawable puzzle1 0x7f05002e
 int drawable puzzle2 0x7f05002f
 int drawable puzzle3 0x7f050030
-int drawable puzzle4 0x7f050031
 int id accessibility_action_clickable_span 0x7f060000
 int id accessibility_custom_action_0 0x7f060001
 int id accessibility_custom_action_1 0x7f060002

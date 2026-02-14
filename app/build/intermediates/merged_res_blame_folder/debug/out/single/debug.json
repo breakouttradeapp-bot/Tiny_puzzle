@@ -1,9 +1,5 @@
 [
     {
-        "merged": "com.tinygenius.app-merged_res-68:/drawable_puzzle2.jpg.flat",
-        "source": "com.tinygenius.app-main-70:/drawable/puzzle2.jpg"
-    },
-    {
         "merged": "com.tinygenius.app-merged_res-68:/mipmap-hdpi_ic_launcher.png.flat",
         "source": "com.tinygenius.app-main-70:/mipmap-hdpi/ic_launcher.png"
     },
@@ -24,10 +20,6 @@
         "source": "com.tinygenius.app-main-70:/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.tinygenius.app-merged_res-68:/drawable_puzzle4.png.flat",
-        "source": "com.tinygenius.app-main-70:/drawable/puzzle4.png"
-    },
-    {
         "merged": "com.tinygenius.app-merged_res-68:/raw_win.mp3.flat",
         "source": "com.tinygenius.app-main-70:/raw/win.mp3"
     },
@@ -38,6 +30,10 @@
     {
         "merged": "com.tinygenius.app-merged_res-68:/drawable_coloring2.png.flat",
         "source": "com.tinygenius.app-main-70:/drawable/coloring2.png"
+    },
+    {
+        "merged": "com.tinygenius.app-merged_res-68:/drawable_puzzle2.png.flat",
+        "source": "com.tinygenius.app-main-70:/drawable/puzzle2.png"
     },
     {
         "merged": "com.tinygenius.app-merged_res-68:/drawable_puzzle3.png.flat",

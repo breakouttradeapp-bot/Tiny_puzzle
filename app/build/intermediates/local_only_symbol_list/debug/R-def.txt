@@ -6,7 +6,6 @@ drawable logo
 drawable puzzle1
 drawable puzzle2
 drawable puzzle3
-drawable puzzle4
 mipmap ic_launcher
 raw click
 raw launch

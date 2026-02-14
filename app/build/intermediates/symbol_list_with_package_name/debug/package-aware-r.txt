@@ -156,7 +156,6 @@ drawable notify_panel_notification_icon_bg
 drawable puzzle1
 drawable puzzle2
 drawable puzzle3
-drawable puzzle4
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
 id accessibility_custom_action_1
