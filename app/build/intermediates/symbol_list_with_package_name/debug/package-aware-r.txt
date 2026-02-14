@@ -289,6 +289,7 @@ layout notification_template_part_chronometer
 layout notification_template_part_time
 raw com_android_billingclient_heterodyne_info
 raw com_android_billingclient_registration_info
+raw win
 string androidx_startup
 string app_name
 string back

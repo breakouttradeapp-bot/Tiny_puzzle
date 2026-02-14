@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tiny Genius</string>
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="celebration_text">Amazing! You did it!</string>
+    <string name="choose_color">Pick a Color</string>
+    <string name="choose_coloring_page">Choose a Coloring Page</string>
+    <string name="choose_puzzle">Choose a Puzzle</string>
+    <string name="clear">Clear</string>
+    <string name="coloring">Coloring</string>
+    <string name="easy">Easy</string>
+    <string name="hard">Hard</string>
+    <string name="incorrect_answer">Incorrect answer. Please try again.</string>
+    <string name="locked">Locked</string>
+    <string name="medium">Medium</string>
+    <string name="moves">Moves: %d</string>
+    <string name="parent_gate_instruction">Please solve this simple math problem to continue:</string>
+    <string name="parent_verification">Parent Verification</string>
+    <string name="pieces">%d pieces</string>
+    <string name="play_again">Play Again</string>
+    <string name="premium_required">Premium Required</string>
+    <string name="puzzle">Puzzle</string>
+    <string name="puzzle_complete">Puzzle Complete!</string>
+    <string name="reset">Reset</string>
+    <string name="sound">Sound</string>
+    <string name="submit">Submit</string>
+    <string name="undo">Undo</string>
+    <string name="unlock_premium">Unlock Premium</string>
+    <string name="your_answer">Your Answer</string>
+    <style name="Theme.TinyGenius" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>
