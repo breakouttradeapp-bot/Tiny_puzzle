@@ -111,6 +111,7 @@ drawable abc_vector_test
 drawable admob_close_button_black_circle_white_cross
 drawable admob_close_button_white_circle_black_cross
 drawable coloring1
+drawable coloring2
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -154,6 +155,8 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable puzzle1
 drawable puzzle2
+drawable puzzle3
+drawable puzzle4
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
 id accessibility_custom_action_1

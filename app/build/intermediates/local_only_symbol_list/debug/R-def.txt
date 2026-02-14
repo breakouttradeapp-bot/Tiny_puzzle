@@ -1,9 +1,12 @@
 R_DEF: Internal format may change without notice
 local
 drawable coloring1
+drawable coloring2
 drawable logo
 drawable puzzle1
 drawable puzzle2
+drawable puzzle3
+drawable puzzle4
 mipmap ic_launcher
 raw click
 raw launch
