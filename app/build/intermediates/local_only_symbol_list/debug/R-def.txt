@@ -1,6 +1,7 @@
 R_DEF: Internal format may change without notice
 local
 drawable coloring1
+drawable logo
 drawable puzzle1
 drawable puzzle2
 string app_name

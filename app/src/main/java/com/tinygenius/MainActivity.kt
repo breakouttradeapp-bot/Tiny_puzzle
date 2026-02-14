@@ -3,34 +3,48 @@ package com.tinygenius
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
 import com.tinygenius.navigation.NavGraph
-import com.tinygenius.ui.theme.TinyGeniusTheme
+import androidx.navigation.compose.rememberNavController
 
-/**
- * Main Activity - Single activity architecture with Jetpack Compose
- */
 class MainActivity : ComponentActivity() {
-    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        
+
         setContent {
-            TinyGeniusTheme {
-                Surface(
+
+            var showSplash by remember { mutableStateOf(true) }
+
+            if (showSplash) {
+
+                Box(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    contentAlignment = Alignment.Center
                 ) {
-                    val navController = rememberNavController()
-                    NavGraph(navController = navController)
+                    Image(
+                        painter = painterResource(id = R.drawable.logo),
+                        contentDescription = "logo",
+                        modifier = Modifier.size(220.dp)
+                    )
                 }
+
+                LaunchedEffect(Unit) {
+                    delay(2000)
+                    showSplash = false
+                }
+
+            } else {
+                val navController = rememberNavController()
+                NavGraph(navController)
             }
         }
     }
 }
+
